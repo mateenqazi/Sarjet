@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuyzqHemXF4mlhbl2TENChSJgcsy2u5y0&libraries=places"></script>
+    <div id="root"></div>    
+  </body>
+</html>
+
+
+<!--  -->
+
+<script>
+  $(document).on('click','ul li', function(){
+            $(this).addClass('active').siblings().removeClass('active')
+        });
+        $(document).ready(function () {
+            $(document).on("scroll", onScroll);
+            
+            //smoothscroll
+            $('a[href^="#"]').on('click', function (e) {
+                e.preventDefault();
+                $(document).off("scroll");
+                
+                $('a').each(function () {
+                    $(this).removeClass('active');
+                })
+                $(this).addClass('active');
+              
+                var target = this.hash,
+                    menu = target;
+                $target = $(target);
+                $('html, body').stop().animate({
+                    'scrollTop': $target.offset().top+2
+                }, 500, 'swing', function () {
+                    window.location.hash = target;
+                    $(document).on("scroll", onScroll);
+                    console.log("scroll")
+                });
+            });
+        });
+
+        function onScroll(event){
+        var scrollPos = $(document).scrollTop();
+        $('#menu-center Link').each(function () {
+            var currLink = $(this);
+            var refElement = $(currLink.attr("#"));
+            if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                $('#menu-center ul li Link').removeClass("active");
+                currLink.addClass("active");
+            }
+            else{
+                currLink.removeClass("active");
+            }
+        });
+    };
+</script>
